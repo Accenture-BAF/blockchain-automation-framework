@@ -28,5 +28,5 @@ jobs:
     - name: Test Stage one
       run: |
         python --version 
-        cd ./platforms/shared
+        cd ./platforms/shared/configuration
         molecule test -s kubernetes-corda
