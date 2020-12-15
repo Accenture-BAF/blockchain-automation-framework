@@ -44,7 +44,10 @@
       loop_var: bin_item
 
   - name: Test vault installation
-    command: "vault version"
+    shell: |
+      ls ~/bin
+      ls
+      vault version
     changed_when: false
     tags:
       - molecule-idempotence-notest
