@@ -22,36 +22,41 @@ jobs:
         pip install molecule==3.0.6 yamllint ansible-lint docker==4.2.2 openshift
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       if: |
-        contains(github.event.pull_request.title.toLowerCase(), 'shared') ||
-        contains(github.event.pull_request.title.toLowerCase(), 'corda') ||
-        contains(github.event.pull_request.title.toLowerCase(), 'fabric')
+        contains(github.event.pull_request.title, '[shared]') ||
+        contains(github.event.pull_request.title, '[corda]') ||
+        contains(github.event.pull_request.title, '[fabric]')
     - name: Test Stage Shared default
       run: |
         cd ./platforms/shared/configuration
         molecule test -s default
-      if: contains(github.event.pull_request.title.toLowerCase(), 'shared')
+      if: contains(github.event.pull_request.title, '[shared]')
     - name: Test Stage kubernetes-corda
       run: |
         cd ./platforms/shared/configuration
         molecule test -s kubernetes-corda
-      if: contains(github.event.pull_request.title.toLowerCase(), 'shared')
+      if: contains(github.event.pull_request.title, '[shared]')
     - name: Test Stage kubernetes-fabric
       run: |
         cd ./platforms/shared/configuration
         molecule test -s kubernetes-fabric
-      if: contains(github.event.pull_request.title.toLowerCase(), 'shared')
+      if: contains(github.event.pull_request.title, '[shared]')
     - name: Test Stage Fabric default
       run: | 
         cd ./platforms/hyperledger-fabric/configuration
         molecule test -s default
-      if: contains(github.event.pull_request.title.toLowerCase(), 'fabric')
+      if: contains(github.event.pull_request.title, '[fabric]')
     - name: Test Stage Fabric default
       run: | 
         cd ./platforms/hyperledger-fabric/configuration
         molecule test -s default
-      if: contains(github.event.pull_request.title.toLowerCase(), 'fabric')
+      if: contains(github.event.pull_request.title, '[fabric]')
     - name: Test Stage Fabric crypto
       run: | 
         cd ./platforms/hyperledger-fabric/configuration
         molecule test -s crypto
-      if: contains(github.event.pull_request.title.toLowerCase(), 'fabric')
+      if: contains(github.event.pull_request.title, '[fabric]')
+    - name: Test Stage Corda default
+      run: | 
+        cd ./platforms/hyperledger-fabric/configuration
+        molecule test -s crypto
+      if: contains(github.event.pull_request.title, '[corda]')
