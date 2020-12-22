@@ -56,7 +56,8 @@
 
   - name: Test vault installation
     shell: |
-      {{ vault.bin_directory }}/vault version
+      printenv
+      vault version
     changed_when: false
     tags:
       - molecule-idempotence-notest
