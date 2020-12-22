@@ -56,7 +56,7 @@
 
   - name: Test vault installation
     shell: |
-      helm version --client --short
+      chmod 755 ./vault
       vault version
     changed_when: false
     tags:
