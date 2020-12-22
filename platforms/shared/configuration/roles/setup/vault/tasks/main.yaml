@@ -55,7 +55,9 @@
     when: not vault_stat_result.stat.exists
 
   - name: Test vault installation
-    command: "vault version"
+    shell: |
+      helm version --client --short
+      vault version
     changed_when: false
     tags:
       - molecule-idempotence-notest
