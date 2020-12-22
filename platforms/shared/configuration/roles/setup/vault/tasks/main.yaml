@@ -45,7 +45,7 @@
 
   - name: Move vault binaries
     copy:
-      src: "{{ tmp_directory.path }}/vault_{{ vault.version }}_{{ vault.os }}_{{ vault.arch }}}/{{ bin_item }}"
+      src: "{{ tmp_directory.path }}/vault_{{ vault.version }}_{{ vault.os }}_{{ vault.arch }}/{{ bin_item }}"
       dest: "{{ vault.bin_directory }}/{{ bin_item }}"
       mode: 0755
     with_items:
